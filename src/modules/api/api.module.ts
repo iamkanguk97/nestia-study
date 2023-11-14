@@ -1,5 +1,8 @@
-import { Global, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import { UserModule } from './user/user.module';
 
-@Global()
-@Module({})
+@Module({
+  imports: [UserModule],
+  exports: [UserModule],
+})
 export class ApiModule {}

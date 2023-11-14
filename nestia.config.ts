@@ -9,7 +9,7 @@ export const NESTIA_CONFIG: INestiaConfig = {
    *   - Asynchronous function returning `INestApplication` instance
    *   - Specify the path or directory of controller class files
    */
-  input: ['src/controllers'],
+  input: ['src/modules/api/**/controllers/*.controller.ts'],
 
   /**
    * Building `swagger.json` is also possible.
@@ -25,6 +25,19 @@ export const NESTIA_CONFIG: INestiaConfig = {
      * `swagger.json` file would be renamed to it.
      */
     output: 'dist/swagger.json',
+    security: {
+      bearer: {
+        type: 'apiKey',
+        name: 'Authorization',
+        in: 'header',
+      },
+    },
+    servers: [
+      {
+        url: 'http://localhost:8000',
+        description: 'Local Server',
+      },
+    ],
   },
 
   /**
